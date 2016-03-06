@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int i = 0; i < t; i++){
+            System.out.println(Solve(in.nextLong(), in.nextLong(), in.nextLong()));
+        }
+    }
+    
+    private static long Solve(long N, long C, long M){
+        long total=0;
+        boolean flag=true;
+        long wrappers=0;
+        total=N/C;
+        wrappers=total;
+        //System.out.print(total+" total  ");
+        //System.out.print(wrappers+" wrappers  ");
+        //System.out.println();
+        long temp;
+        while(flag){
+            temp=total;
+            total+=wrappers/M;
+            wrappers-=(wrappers/M)*M;
+            wrappers+=(total-temp);
+            //System.out.println("wrapppersss "+temp+"  "+wrappers);
+            //System.out.print(total+" total  ");
+            //System.out.print(wrappers+" wrappers");
+            //System.out.println();
+            if(wrappers<M){
+                flag=false;
+            }
+        }
+        return total;
+    }
+    
+    
+}

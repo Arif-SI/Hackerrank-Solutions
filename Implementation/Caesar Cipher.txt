@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        scan.nextLine();
+        str=scan.nextLine();
+        k=scan.nextInt();
+        c=new char[n];
+        c=str.toCharArray();
+        k%=26;
+    }
+    
+    public void calc(){
+        for(int i=0;i<n;i++){
+            temp=(int)c[i];
+            if(temp<=90&&temp>=65){
+                temp=(temp+k);
+                if((temp)!=90)
+                    temp%=90;
+                if(temp<=65)
+                    temp+=64;
+                c[i]=(char)temp;
+            }
+            else if(temp<=122&&temp>=97){
+                temp=(temp+k);
+                if((temp)!=122)
+                    temp%=122;
+                if(temp<=97)
+                    temp+=96;
+                c[i]=(char)temp;
+            }
+            System.out.print(c[i]);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+        s.calc();
+    }
+    int n,k,temp;
+    String str;
+    char [] c;
+}

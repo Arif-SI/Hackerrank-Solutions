@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    int n;
+    int [] arr,res;
+    int height=1;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        arr=new int[n];
+        res=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<arr[i];j++){
+                if(j%2==1){
+                    height++;
+                }
+                else{
+                    height*=2;
+                }
+               // System.out.println(j+"  "+height);
+            }
+            System.out.println(height);
+            height=1;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Solution  s=new Solution();
+        s.getData();
+    }
+}

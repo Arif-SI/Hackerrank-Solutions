@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    int n,num;
+    int [] arr;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        num=scan.nextInt();
+        n=scan.nextInt();
+        arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+        for(int i=0;i<n;i++){
+            if(num==arr[i]){
+                System.out.println(i);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+    }
+}

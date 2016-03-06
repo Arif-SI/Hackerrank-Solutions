@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    int sum=0;
+    String actual,expected;
+    int [] act,exp;
+    String [] actS,expS;
+    int [] fine={15,500,10000};
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        actual=scan.nextLine();
+        expected=scan.nextLine();
+        actS=actual.split("\\s");
+        expS=expected.split("\\s");
+        act=new int[3];
+        exp=new int[3];
+        for(int i=0;i<actS.length;i++){
+            act[i]=Integer.parseInt(actS[i]);
+            exp[i]=Integer.parseInt(expS[i]);
+        }
+        loop:
+        for(int i=act.length-1;i>=0;i--){
+            if(act[i]<=exp[i]){
+                fine[i]=0;
+                sum+=fine[i];
+                if(act[i]<exp[i])
+                break loop;
+            }
+            else if(act[i]>exp[i]){
+                fine[i]*=(act[i]-exp[i]);
+                sum+=fine[i];
+                break loop;
+            }
+        }
+        System.out.println(sum);
+    }
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+    }
+}

@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    int n;
+    long [] arr;
+    
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        arr=new long[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextLong();
+        }
+    }
+    
+    public void cut(){
+        int count=0;
+        long temp=0;
+        temp=arr[0];
+        do{
+            count=0;
+            Arrays.sort(arr);
+            loop:
+            for(int i=0;i<n;i++){
+                if(arr[i]!=0){
+                    temp=arr[i];
+                    break loop;
+                }
+                    //System.out.println("temp value"+temp);
+            }
+            for(int j=0;j<n;j++){
+                if(arr[j]>=temp){
+                    arr[j]-=temp;
+                    //System.out.println(arr[j]);
+                    count++;
+                }
+            }
+            if(count!=0)
+            System.out.println(count);
+        }while(count>1);
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+        s.cut();
+    }
+}

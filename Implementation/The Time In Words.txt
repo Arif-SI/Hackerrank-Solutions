@@ -1,0 +1,91 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public Solution(){
+        mins=new HashMap<Integer,String>();
+        hours=new HashMap<Integer,String>();
+    }
+    Map <Integer,String>mins,hours;
+    Integer hr,min;
+    String time;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        hr=scan.nextInt();
+        min=scan.nextInt();
+        if(min>30){
+            if(hr!=12){
+                hr=hr+1;
+            }
+            else{
+                hr=1;
+            }
+            min=60-min;
+            time=mins.get(min)+" to "+hours.get(hr);
+        }
+        else if(min<=30&&min!=0){
+            time=mins.get(min)+" past "+hours.get(hr);
+        }
+        else if(min==0){
+            time=hours.get(hr)+" "+mins.get(min);
+        }
+            System.out.println(time);
+    }
+    public void calc(){ 
+        hours.put(new Integer(1),"one");
+        hours.put(new Integer(2),"two");
+        hours.put(new Integer(3),"three");
+        hours.put(new Integer(4),"four");
+        hours.put(new Integer(5),"five");
+        hours.put(new Integer(6),"six");
+        hours.put(new Integer(7),"seven");
+        hours.put(new Integer(8),"eight");
+        hours.put(new Integer(9),"nine");
+        hours.put(new Integer(10),"ten");
+        hours.put(new Integer(11),"eleven");
+        hours.put(new Integer(12),"twelve");
+        
+        
+        mins.put(new Integer(0),"o' clock");
+        mins.put(new Integer(1),"one minute");
+        mins.put(new Integer(2),"two minutes");
+        mins.put(new Integer(3),"three minutes");
+        mins.put(new Integer(4),"four minutes");
+        mins.put(new Integer(5),"five minutes");
+        mins.put(new Integer(6),"six minutes");
+        mins.put(new Integer(7),"seven minutes");
+        mins.put(new Integer(8),"eight minutes");
+        mins.put(new Integer(9),"nine minutes");
+        mins.put(new Integer(10),"ten minutes");
+        mins.put(new Integer(11),"eleven minutes");
+        mins.put(new Integer(12),"twelve minutes");
+        mins.put(new Integer(13),"thirteen minutes");
+        mins.put(new Integer(14),"fourteen minutes");
+        mins.put(new Integer(15),"quarter");
+        mins.put(new Integer(16),"sixteen minutes");
+        mins.put(new Integer(17),"seventeen minutes");
+        mins.put(new Integer(18),"eighteen minutes");
+        mins.put(new Integer(19),"nineteen minutes");
+        mins.put(new Integer(20),"twenty minutes");
+        mins.put(new Integer(21),"twenty one minutes");
+        mins.put(new Integer(22),"twenty two minutes");
+        mins.put(new Integer(23),"twenty three minutes");
+        mins.put(new Integer(24),"twenty four minutes");
+        mins.put(new Integer(25),"twenty five minutes");
+        mins.put(new Integer(26),"twenty six minutes");
+        mins.put(new Integer(27),"twenty seven minutes");
+        mins.put(new Integer(28),"twenty eight minutes");
+        mins.put(new Integer(29),"twenty nine minutes");
+        mins.put(new Integer(30),"half");
+        
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.calc();
+        s.getData();
+    }
+}

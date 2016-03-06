@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    long [] sum;
+    long [][] gifts,prices;
+    long white,black;
+    int n;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        sum=new long[n];
+        gifts=new long [n][2];
+        prices=new long [n][3];
+        for(int i=0;i<n;i++){
+            gifts[i][0]=scan.nextLong();
+            gifts[i][1]=scan.nextLong();
+            prices[i][0]=scan.nextLong();
+            prices[i][1]=scan.nextLong();
+            prices[i][2]=scan.nextLong();
+        }
+    }
+    
+    public void calc(){
+        for(int i=0;i<n;i++){
+            black=prices[i][0]+prices[i][2];
+            white=prices[i][1]+prices[i][2];
+            if(black<prices[i][1]){
+                sum[i]+=gifts[i][1]*black;
+            }
+            else{
+                sum[i]+=gifts[i][1]*prices[i][1];
+            }
+            if(white<prices[i][0]){
+                sum[i]+=gifts[i][0]*white;
+            }
+            else{
+                sum[i]+=gifts[i][0]*prices[i][0];
+            }
+        }
+    }
+    
+    public void show(){
+        for(long i:sum){
+            System.out.println(i);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+        s.calc();
+        s.show();
+    }
+}

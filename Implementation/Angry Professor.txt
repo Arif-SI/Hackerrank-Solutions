@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    int n;
+    int cap[][];
+    int [][] arr;
+    String [] res;
+    int count=0;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        res=new String[n];
+        cap=new int[n][2];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<2;j++){
+                cap[i][j]=scan.nextInt();
+            }
+            arr=new int[1][cap[i][0]];
+                for(int k=0;k<cap[i][0];k++){
+                    arr[0][k]=scan.nextInt();
+                    //System.out.println(arr[0][k]);
+                    if(arr[0][k]<=0){
+                        count++;
+                    //System.out.println("Count"+count);    
+                    }
+                }
+            //System.out.println("capacity"+cap[i][1]);
+            if(count>=cap[i][1])
+                {
+                res[i]="NO";
+            }
+            else{
+                res[i]="YES";
+            }
+            count=0;
+        }
+        for(String s:res){
+            System.out.println(s);
+        }
+        
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+    }
+}

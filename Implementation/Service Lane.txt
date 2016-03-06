@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        t=scan.nextInt();
+        arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+        for(int j=0;j<t;j++){
+            entry=scan.nextInt();
+            exit=scan.nextInt();
+            temp=arr[entry];
+            for(int k=entry;k<=exit;k++){
+                if(arr[k]<temp)
+                    temp=arr[k];
+            }
+            System.out.println(temp);
+        }
+    }
+
+    
+    public static void main(String[] args) {
+        Solution s =new Solution();
+        s.getData();
+    }
+    int n,t,entry,exit,temp;
+    int [] arr;
+}
