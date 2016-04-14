@@ -1,0 +1,48 @@
+import java.util.*;
+public class Solution {
+       
+          static void quickSort(int[] ar,int p,int r) {
+              int q;
+              if(p<r){
+                  q=partition(ar,p,r);
+                  quickSort(ar,p,q-1);
+                  quickSort(ar,q+1,r);
+              }
+       }   
+    
+    static int partition(int [] ar,int p,int r){
+        int i=p;
+        int temp;
+        for(int j=i;j<=r-1;j++){
+            if(ar[j]<ar[r]){
+                temp=ar[j];
+                ar[j]=ar[i];
+                ar[i]=temp;
+                i++;
+            }
+        }
+        temp=ar[i];
+        ar[i]=ar[r];
+        ar[r]=temp;
+        printArray(ar,0,ar.length-1);
+        return i;
+    }
+ 
+ static void printArray(int[] ar,int p,int r) {
+         for(int n=p;n<=r;n++){
+            System.out.print(ar[n]+" ");
+         }
+           System.out.println("");
+      }
+       
+      public static void main(String[] args) {
+           Scanner in = new Scanner(System.in);
+           int n = in.nextInt();
+           int[] ar = new int[n];
+           for(int i=0;i<n;i++){
+              ar[i]=in.nextInt(); 
+           }
+           quickSort(ar,0,ar.length-1);
+          //printArray(ar,0,ar.length-1);
+       }    
+   }
