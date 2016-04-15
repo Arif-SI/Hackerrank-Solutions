@@ -1,0 +1,116 @@
+
+import java.util.*;
+
+public class Solution {
+
+    static int swaps = 0;
+    static int count = 0;
+    
+    //quick sort DnC
+    static void quickSort(int[] ar, int p, int r) {
+        int q;
+        if (p < r) {
+            q = partition(ar, p, r);
+            quickSort(ar, p, q - 1);
+            quickSort(ar, q + 1, r);
+        }
+    }
+
+    //Partition method quick sort plus calculates swaps for quick sort
+    //pivot last element lomuto partition
+    static int partition(int[] ar, int p, int r) {
+        int i = p;
+        int temp;
+        for (int j = i; j <= r - 1; j++) {
+            if (ar[j] < ar[r]) {
+                temp = ar[j];
+                ar[j] = ar[i];
+                ar[i] = temp;
+                swaps++;
+                i++;
+            }
+        }
+        temp = ar[i];
+        ar[i] = ar[r];
+        ar[r] = temp;
+        swaps++;
+        return i;
+    }
+
+    //printarray check.
+    static void printArray(int[] ar, int p, int r) {
+        /*System.out.println(swaps);
+         for(int n=p;n<=r;n++){
+         System.out.print(ar[n]+" ");
+         }
+         System.out.println("");*/
+    }
+
+    //mergesort DnC 
+    //Using merge sort to reduce time complexity for large number of inputs.
+    public static void mergesort(int[] arr, int p, int r) {
+        int q = (p + r) / 2;
+        if (p < r) {
+            mergesort(arr, p, q);
+            mergesort(arr, q + 1, r);
+            merge(arr, p, q, r);
+        }
+    }
+
+    //merge procedure calculates swaps for insertion sort
+    public static void merge(int[] arr, int p, int q, int r) {
+        int[] left = new int[q - p + 1];
+        int[] right = new int[r - q];
+        for (int i = 0; i < left.length; i++) {
+            left[i] = arr[p + i];
+        }
+        for (int i = 0; i < right.length; i++) {
+            right[i] = arr[q + i + 1];
+        }
+
+        int i = 0, j = 0;
+        for (int k = p; k <= r; k++) {
+            if (i < left.length && j < right.length) {
+                if (left[i] <= right[j]) {
+                    arr[k] = left[i];
+                    i++;
+                } else {
+                    arr[k] = right[j];
+                    count += left.length - i;
+                    j++;
+                }
+            } else {
+                if (i < left.length) {
+                    arr[k] = left[i];
+                    i++;
+                } else if (j < right.length) {
+                    arr[k] = right[j];
+                    j++;
+                }
+            }
+        }
+    }
+
+    //insertion sort dummy directs to merge procedure
+    public static int insertSort(int[] ar) {
+        count = 0;
+        mergesort(ar, 0, ar.length - 1);
+        return count;
+    }
+    
+    //the main method :P
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        int[] mar = new int[n];
+        for (int i = 0; i < n; i++) {
+            ar[i] = in.nextInt();
+            mar[i] = ar[i];
+        }
+        quickSort(ar, 0, ar.length - 1);
+        int c = insertSort(mar);
+        System.out.println(c - swaps);
+    }
+    
+}
