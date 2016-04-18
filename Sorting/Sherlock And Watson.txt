@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+int [] arr,testIndices;
+    int q;int k;int n;
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        arr=new int[n];
+        k=scan.nextInt();
+        q=scan.nextInt();
+        testIndices=new int[q];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+        
+        for(int i=0;i<q;i++){
+            testIndices[i]=scan.nextInt();
+        }
+    }
+    
+    public void calc(){
+        int tempIndex=0;
+        for(int i=0;i<q;i++){
+            k=k%arr.length;
+            tempIndex=testIndices[i]+arr.length-k;
+            if(tempIndex>=arr.length){
+                tempIndex-=arr.length;
+            }
+            System.out.println(arr[tempIndex]);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+        s.calc();
+    }
+}
