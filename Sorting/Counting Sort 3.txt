@@ -1,0 +1,42 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        int[] arr;
+        String[] str;
+        int n;
+        Scanner scan = new Scanner(System.in);
+        n = scan.nextInt();
+        arr = new int[n];
+        str = new String[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scan.nextInt();
+            str[i] = scan.nextLine();
+        }
+        int[] bArr = new int[arr.length];
+        int[] c;
+
+        //find max element in arr
+        int k = 100;
+
+        c = new int[k];
+
+        //c[i] now contains no of elements equal to i.
+        for (int i = 0; i < arr.length; i++) {
+            c[arr[i]] = c[arr[i]] + 1;
+        }
+
+        //c[i] now contains no of elements less than or equal to i.
+        for (int i = 1; i < k; i++) {
+            c[i] = c[i] + c[i - 1];
+        }
+
+        //print the elements in the sorted array
+        for (int i : c) {
+            System.out.print(i + " ");
+        }
+    }
+}
